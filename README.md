@@ -53,13 +53,14 @@ Each route has latency budgets from the production evaluation methodology:
 
 ## Dataset
 
-25 curated test cases in `dataset.json`, 5 per route:
+30 curated test cases in `dataset.json`:
 
 - **Fast** (fast-01 to fast-05): Simple factual queries
 - **Standard** (standard-01 to standard-05): Synthesis and exploration
 - **Deep** (deep-01 to deep-05): Analysis, comparison, multi-step reasoning
 - **Creative** (creative-01 to creative-05): Open-ended ideation
 - **Research** (research-01 to research-05): Article-specific academic queries
+- **Adversarial** (adversarial-01 to adversarial-05): Robustness testing — prompt injection, ambiguous multi-topic, out-of-scope (political), multilingual, overlong demand
 
 Each test case includes a hand-crafted fixture response for offline evaluation.
 
@@ -90,7 +91,7 @@ Each run saves to `runs/<tag>_<timestamp>/`:
 eval.py       CLI entrypoint, data classes, run execution, persistence
 scorers.py    Hybrid scoring engine (rule-based + LLM-as-judge)
 report.py     Terminal (ANSI) and markdown report generation
-dataset.json  25 curated test cases with fixture responses
+dataset.json  30 curated test cases with fixture responses (25 standard + 5 adversarial)
 ```
 
 Three files of logic. No config system, no plugin architecture. The dataset is JSON, the scoring logic is functions, and the reports are strings. Swap `dataset.json` and adjust `scorers.py` to evaluate a different chatbot.

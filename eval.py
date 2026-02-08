@@ -5,7 +5,7 @@ Run curated test queries against the CARG chatbot (live or fixtures),
 score responses across 5 quality dimensions, and generate reports.
 
 Usage:
-    python eval.py run --tag baseline           # Run all 25 queries
+    python eval.py run --tag baseline           # Run all 30 queries
     python eval.py run --fixtures --tag test     # Run with fixture responses
     python eval.py compare <run_a> <run_b>       # Diff two runs
     python eval.py show <run>                    # Display a saved run
@@ -295,7 +295,7 @@ def cli():
 @click.option("--fixtures", is_flag=True, help="Use fixture responses instead of live API.")
 @click.option("--delay", default=0.5, type=float, help="Delay between live API calls (seconds).")
 def run(tag: str, fixtures: bool, delay: float):
-    """Execute evaluation run against all 25 test cases."""
+    """Execute evaluation run against all test cases."""
     mode_label = "fixtures" if fixtures else "live API"
     scorer_label = "hybrid (rule + LLM)" if has_llm_judge() else "rule-based only"
 
